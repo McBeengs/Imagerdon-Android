@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="/storage/sdcard/Imagerdon/e621/"
+        android:dialogMessage=""
+        android:dialogTitle="Select folder name"
+        android:key="e621_save_path"
+        android:summary="Folder where all e621's artists will be saved."
+        android:title="Default folder name" />
+    <CheckBoxPreference
+        android:key="e621_advanced_naming"
+        android:summary="Specify custom patterns when naming a downloading file."
+        android:title="Advanced naming" />
+    <ListPreference
+        android:dependency="e621_advanced_naming"
+        android:defaultValue="0"
+        android:entries="@array/advanced_naming_names"
+        android:entryValues="@array/advanced_naming_values"
+        android:key="naming_mode"
+        android:summary="Doesn't auto name the files with the image name, instead name them by..."
+        android:title="Naming option" />
+</PreferenceScreen>

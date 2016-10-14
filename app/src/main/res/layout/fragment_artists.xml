@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/search_pane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="Search text:"
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type something..."
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/filter_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Filters"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@drawable/ripple_search_filters"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <android.support.design.widget.CoordinatorLayout
+            android:animateLayoutChanges="true"
+            android:id="@+id/buttons_row_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/da_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="DeviantArt"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/tu_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Tumblr"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/fa_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="FurAffinity"
+                android:textColor="#FFFFFF" />
+        </android.support.design.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:animateLayoutChanges="true"
+            android:id="@+id/buttons_row_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/pi_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pixiv"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/e621_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="e621"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:animateLayoutChanges="true"
+            android:id="@+id/buttons_row_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/all_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:checked="true"
+                android:text="All artists"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/fav_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Favorited"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/last_radio_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="By date"
+                android:textColor="#FFFFFF" />
+        </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/search_fab"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="24dp"
+        android:background="@drawable/ripple_fab_search"
+        android:elevation="8dp"
+        android:src="@android:drawable/ic_menu_search" />
+
+    <TextView
+        android:id="@+id/nothing_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_pane"
+        android:gravity="center"
+        android:paddingTop="50dp"
+        android:text="Nothing found..."
+        android:textAlignment="center"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_pane"
+        android:cacheColorHint="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" />
+</RelativeLayout>

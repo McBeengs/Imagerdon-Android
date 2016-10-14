@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorDABoom">#000000</color>
+    <color name="colorTUBoom">#36465D</color>
+    <color name="colorFABoom">#2E3B41</color>
+    <color name="colorPIBoom">#2799DC</color>
+    <color name="colorE621Boom">#00559D</color>
+</resources>

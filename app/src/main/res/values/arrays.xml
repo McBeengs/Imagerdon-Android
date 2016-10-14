@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="languages_names">
+        <item>"English"</item>
+    </string-array>
+    <string-array name="languages_values">
+        <item>"0"</item>
+    </string-array>
+    <string-array name="existing_names">
+        <item>"Skip"</item>
+        <item>"Ask the user"</item>
+        <item>"Download a copy"</item>
+    </string-array>
+    <string-array name="existing_values">
+        <item>"0"</item>
+        <item>"1"</item>
+        <item>"2"</item>
+    </string-array>
+    <string-array name="advanced_naming_names">
+        <item>"Order of upload"</item>
+        <item>"Time of download"</item>
+    </string-array>
+    <string-array name="advanced_naming_values">
+        <item>"0"</item>
+        <item>"1"</item>
+    </string-array>
+</resources>

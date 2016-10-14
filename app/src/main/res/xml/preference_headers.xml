@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <header
+        android:fragment="com.mcbeengs.imagerdon.activity.prefs.PrefsActivity$GeneralPrefs"
+        android:icon="@drawable/ic_icon_settings"
+        android:summary="Set things like language, notifications and outputs paths."
+        android:title="Overral Settings" />
+
+    <header
+        android:fragment="com.mcbeengs.imagerdon.activity.prefs.PrefsActivity$DeviantArtPrefs"
+        android:icon="@drawable/ic_icon_settings"
+        android:summary="Adjust settings like login, output folder and naming options when downloading from DeviantArt's servers."
+        android:title="DeviantArt Settings" />
+
+    <header
+        android:fragment="com.mcbeengs.imagerdon.activity.prefs.PrefsActivity$TumblrPrefs"
+        android:icon="@drawable/ic_icon_settings"
+        android:summary="Adjust settings like login, output folder and naming options when downloading from Tumblr's servers."
+        android:title="Tumblr Settings" />
+
+    <header
+        android:fragment="com.mcbeengs.imagerdon.activity.prefs.PrefsActivity$FurAffinityPrefs"
+        android:icon="@drawable/ic_icon_settings"
+        android:summary="Adjust settings like login, output folder and naming options when downloading from FurAffinity's servers."
+        android:title="FurAffinity Settings" />
+
+    <header
+        android:fragment="com.mcbeengs.imagerdon.activity.prefs.PrefsActivity$PixivPrefs"
+        android:icon="@drawable/ic_icon_settings"
+        android:summary="Adjust settings like login, output folder and naming options when downloading from Pixiv's servers."
+        android:title="Pixiv Settings" />
+
+    <header
+        android:fragment="com.mcbeengs.imagerdon.activity.prefs.PrefsActivity$E621Prefs"
+        android:icon="@drawable/ic_icon_settings"
+        android:summary="Adjust settings like login, output folder and naming options when downloading from e621's servers."
+        android:title="e621 Settings" />
+
+    <!--<header-->
+    <!--android:icon="@drawable/ic_menu_gallery"-->
+    <!--android:summary="Launches an Intent."-->
+    <!--android:title="Intent">-->
+    <!--<intent-->
+    <!--android:action="android.intent.action.VIEW"-->
+    <!--android:data="http://www.android.com" />-->
+    <!--</header>-->
+
+</preference-headers>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:login="http://schemas.android.com/apk/res-auto">
+
+    <com.mcbeengs.imagerdon.activity.prefs.LoginPreference
+        login:server="3"
+        login:keyToUsername="pixiv_user"
+        login:keyToPassword="pixiv_pass"
+        android:summary="Set the account that will be used in order to download galleries from the server."
+        android:title="Login" />
+    <EditTextPreference
+        android:defaultValue="/storage/sdcard/Imagerdon/Pixiv/"
+        android:dialogMessage=""
+        android:dialogTitle="Select folder name"
+        android:key="pixiv_save_path"
+        android:summary="Folder where all Pixiv's artists will be saved."
+        android:title="Default folder name" />
+    <CheckBoxPreference
+        android:key="pixiv_advanced_naming"
+        android:summary="Specify custom patterns when naming a downloading file."
+        android:title="Advanced naming" />
+    <ListPreference
+        android:dependency="pixiv_advanced_naming"
+        android:defaultValue="0"
+        android:entries="@array/advanced_naming_names"
+        android:entryValues="@array/advanced_naming_values"
+        android:key="naming_mode"
+        android:summary="Doesn't auto name the files with the image name, instead name them by..."
+        android:title="Naming option" />
+</PreferenceScreen>

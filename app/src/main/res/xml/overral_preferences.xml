@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/languages_names"
+            android:entryValues="@array/languages_values"
+            android:key="selected_language"
+            android:summary="Set the language of the app."
+            android:title="Language" />
+        <CheckBoxPreference
+            android:key="check_updates"
+            android:summary="Check new updates every time the app starts."
+            android:title="Check Updates" />
+        <CheckBoxPreference
+            android:key="run_on_background"
+            android:summary="Keep downloading tasks when the screen is off. Add a notification on the notification bar."
+            android:title="Run on background" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Download">
+
+        <com.mcbeengs.imagerdon.activity.prefs.SeekBarPreference
+            android:defaultValue="5"
+            android:dialogMessage="Set the number of simultaneous downloads"
+            android:key="simultaneous_downloads"
+            android:max="10"
+            android:summary="Number of images being simultaneously downloaded at any time in a task."
+            android:text="images"
+            android:title="Simultaneous downloads" />
+        <com.mcbeengs.imagerdon.activity.prefs.SeekBarPreference
+            android:defaultValue="5"
+            android:dialogMessage="Set the number of simultaneous tasks"
+            android:key="simultaneous_tasks"
+            android:max="10"
+            android:summary="Number of tasks being simultaneously downloaded on the app."
+            android:text="tasks"
+            android:title="Simultaneous tasks" />
+        <EditTextPreference
+            android:defaultValue="/storage/sdcard/Imagerdon/"
+            android:dialogMessage=""
+            android:dialogTitle="Select where to save"
+            android:key="save_path"
+            android:summary="Path where all images will be saved when downloaded."
+            android:title="Save path" />
+        <CheckBoxPreference
+            android:key="create_subfolders"
+            android:summary="Create subfolders as new artists keep being downloading."
+            android:title="Create subfolders" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/existing_names"
+            android:entryValues="@array/existing_values"
+            android:key="artist_exists"
+            android:summary="Behavior when an artist about to be downloaded already exists on DB."
+            android:title="Existing artist behavior" />
+    </PreferenceCategory>
+</PreferenceScreen>
