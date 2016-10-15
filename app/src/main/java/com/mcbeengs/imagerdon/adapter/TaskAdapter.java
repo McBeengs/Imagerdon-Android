@@ -1,9 +1,8 @@
 package com.mcbeengs.imagerdon.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,6 @@ import com.mcbeengs.imagerdon.download.FurAffinity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by McBeengs on 02/10/2016.
@@ -27,9 +24,8 @@ import java.util.concurrent.Executors;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
-    private static ExecutorService executor;
     private List<Task> mTasks;
-    private List<Task> executingTasks;
+    private List<Task> runningTasks = new ArrayList<>();
     private static Context mContext;
 
     public TaskAdapter(Context context, List<Task> tasks) {
@@ -49,39 +45,34 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(TaskAdapter.ViewHolder holder, int position) {
-        Task task = mTasks.get(position);
+    public void onBindViewHolder(final TaskAdapter.ViewHolder holder, int position) {
+        final Task task = mTasks.get(position);
 
-        Toast.makeText(mContext, "yes", Toast.LENGTH_SHORT).show();
-//
-//        if (executor == null) {
-//            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
-//            executor = Executors.newFixedThreadPool(pref.getInt("simultaneous_tasks", 5));
-//        }
-//
-//        if (executingTasks == null) {
-//            executingTasks = new ArrayList<>();
-//        }
-//
-//        if (!executingTasks.contains(task)) {
-//            executingTasks.add(task);
-//            switch (task.getServer()) {
-//                case 2:
-//                    executor.execute(new FurAffinity(task, holder));
-//                    break;
-//            }
-//        }
-//        TextView taskType = holder.taskType;
-//        TextView artistName = holder.artistName;
-//        TextView infoDisplay = holder.infoDisplay;
-//        ProgressBar progressBar = holder.progressBar;
-//        ImageButton playButton = holder.playButton;
-//
-//        taskType.setText(task.getTypeOfTask() == Task.DOWNLOAD_TASK ? "Download Task" : "Upload Task");
-//        Typeface custom_font = Typeface.createFromAsset(mContext.getAssets(), "fonts/eras_bold_itc.TTF");
-//        taskType.setTypeface(custom_font);
-//        artistName.setText(task.getArtistName());
-//        progressBar.setMax(task.getNumOfImages());
+        holder.taskType.setText(task.getTypeOfTask() == Task.DOWNLOAD_TASK ? "Download Task" : "Upload Task");
+        holder.artistName.setText(task.getArtistName());
+        holder.progressBar.setProgress(task.getProgress());
+        holder.progressBar.setMax(task.getMaxProgress());
+        holder.infoDisplay.setText(task.getDisplayText());
+        task.setInfoDisplay(holder.infoDisplay);
+        task.setProgressBar(holder.progressBar);
+
+        holder.playButton.setEnabled(task.getDownloadState() == Task.DownloadState.NOT_STARTED);
+        holder.playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                task.setDownloadState(Task.DownloadState.QUEUED);
+                holder.playButton.setEnabled(false);
+                holder.playButton.invalidate();
+
+                switch (task.getServer()) {
+                    case 2:
+                        FurAffinity fa = new FurAffinity(task, holder);
+                        fa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        break;
+                }
+            }
+        });
+
     }
 
     @Override

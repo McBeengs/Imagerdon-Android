@@ -1,8 +1,10 @@
 package com.mcbeengs.imagerdon.download;
 
+import android.os.AsyncTask;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.mcbeengs.imagerdon.adapter.Task;
 import com.mcbeengs.imagerdon.adapter.TaskAdapter;
 
@@ -10,7 +12,7 @@ import com.mcbeengs.imagerdon.adapter.TaskAdapter;
  * Created by McBeengs on 08/10/2016.
  */
 
-public class FurAffinity extends BasicCore {
+public class FurAffinity extends AsyncTask<Void, Integer, Void> {
 
     private Task task;
     TextView taskType;
@@ -25,41 +27,42 @@ public class FurAffinity extends BasicCore {
         taskType = view.taskType;
         artistName = view.artistName;
         infoDisplay = view.infoDisplay;
-        progressBar = view.progressBar;
+        progressBar = task.getProgressBar();
         playButton = view.playButton;
-
-        taskType.setText(task.getTypeOfTask() == Task.DOWNLOAD_TASK ? "Download Task" : "Upload Task");
-        artistName.setText("qualquer coisa");
-        progressBar.setMax(task.getNumOfImages());
     }
 
     @Override
-    public void run() {
-        progressBar.setMax(100);
-        for (int i = 0; i < 100; i++) {
-            progressBar.setProgress(i);
-            progressBar.post(new Runnable() {
-                @Override
-                public void run() {
-                    progressBar.invalidate();
-                }
-            });
+    protected void onProgressUpdate(Integer... values) {
+        task.setProgress(values[0]);
+        ProgressBar bar = task.getProgressBar();
+        if (bar != null) {
+            bar.setProgress(task.getProgress());
+            bar.invalidate();
+        }
 
-            final int c = i;
-            infoDisplay.post(new Runnable() {
-                @Override
-                public void run() {
-                    infoDisplay.setText("Downloading, " + (100 - c) + " images left");
-                    infoDisplay.invalidate();
-                }
-            });
+        TextView display = task.getInfoDisplay();
+        if (display != null) {
+            display.setText("Downloading, " + (task.getMaxProgress() - task.getProgress()) + " images left");
+            display.invalidate();
+        }
+    }
 
-
+    @Override
+    protected Void doInBackground(Void... voids) {
+        task.setDownloadState(Task.DownloadState.QUEUED.DOWNLOADING);
+        task.setMaxProgress(100);
+        for (int i = 0; i <= task.getMaxProgress(); i++) {
             try {
-                sleep(100);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            publishProgress(i);
+
         }
+
+        task.setDownloadState(Task.DownloadState.COMPLETE);
+        return null;
     }
 }
